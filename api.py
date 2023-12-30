@@ -16,7 +16,7 @@ class Client(OpenAI):
         )
         return transcript
     
-    def summarize(self, transcript: str, prompt_instructions: List[str], model: str = "gpt-4", temperature: float = 0.9) -> ChatCompletion:
+    def summarize(self, transcript: str, prompt_instructions: List[str], model: str = "gpt-4", temperature: float = 0.9) -> str:#ChatCompletion:
         messages = [
             *({"role": "system", "content": prompt_instruction} for prompt_instruction in prompt_instructions),
             {"role": "system", "content": "Here is the transcript: " + transcript}
