@@ -17,11 +17,11 @@ audio_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "mp4", "m
 
 # transcribe audio file
 st.write("Transcribe")
-transcript = ""
 if audio_file is not None:
-    if st.button("Transcribe"):
-        transcript = client.transcribe(audio_file)
-        st.write("Transcript: " + transcript)
+    if st.button('Transcribe'):
+        st.session_state['transcript'] = client.transcribe(audio_file)
+        st.write("Transcript: " + st.session_state['transcript'])
+
 
 # get prompt instructions as list of text inputs
 st.header("Prompt instructions")
@@ -50,5 +50,5 @@ temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.9, 
 # summarize audio file
 st.header("Summarize audio file")
 if st.button('Summarize'):
-    summary = client.summarize(transcript, prompt_instructions, model=model, temperature=temperature)
+    summary = client.summarize(st.session_state['transcript'], prompt_instructions, model=model, temperature=temperature)
     st.write("Summary: " + summary)
