@@ -17,6 +17,7 @@ audio_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "mp4", "m
 
 # transcribe audio file
 st.write("Transcribe")
+transcript = ""
 if audio_file is not None:
     transcript = client.transcribe(audio_file)
     st.write("Transcript: " + transcript)
