@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 
-import os
-from dotenv import load_dotenv
 from openai import OpenAI
 from typing import List
 from openai.types.chat import ChatCompletion
-
-load_dotenv()
-OPENAI_KEY = os.getenv("OPENAI_KEY")
-
 
 class Client(OpenAI):
     def __init__(self, api_key):
